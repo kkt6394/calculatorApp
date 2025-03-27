@@ -15,72 +15,65 @@ class ViewController: UIViewController {
     let button2 = UIButton()
     let button3 = UIButton()
     let button4 = UIButton()
+    let button5 = UIButton()
+    let button6 = UIButton()
+    let button7 = UIButton()
+    let button8 = UIButton()
+    let button9 = UIButton()
+    let button10 = UIButton()
+    let button11 = UIButton()
+    let button12 = UIButton()
+    let button13 = UIButton()
+    let button14 = UIButton()
+    let button15 = UIButton()
+    let button16 = UIButton() // 줄일 방법 찾기.
+
     let stackView = UIStackView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        let horizontalStackView = makeHorizontalStackView([button1, button2, button3, button4])
-        view.addSubview(horizontalStackView)
+        let horizontalStackView1 = makeHorizontalStackView([button1, button2, button3, button4])
+        view.addSubview(horizontalStackView1)
         
-        horizontalStackView.snp.makeConstraints {
+        let horizontalStackView2 = makeHorizontalStackView([button5, button6, button7, button8])
+        view.addSubview(horizontalStackView2)
+        
+        let horizontalStackView3 = makeHorizontalStackView([button9, button10, button11, button12])
+        view.addSubview(horizontalStackView3)
+        
+        let horizontalStackView4 = makeHorizontalStackView([button13, button14, button15, button16])
+        view.addSubview(horizontalStackView4)
+
+        
+        horizontalStackView1.snp.makeConstraints {
             $0.center.equalToSuperview()
             $0.height.equalTo(80)
             $0.width.equalTo(350)
         }
-    }
-    private func configureUI() {
-        view.backgroundColor = .black
-        // label 속성
-        label.textColor = .white
-        label.text = "12345"
-        label.textAlignment = .right
-        label.font = .boldSystemFont(ofSize: 60)
-        
-        // button 속성
-        button1.setTitle("7", for: .normal)
-        button1.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)
-        button1.backgroundColor = UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1.0)
-        button1.layer.cornerRadius = 40
-        
-        button2.setTitle("8", for: .normal)
-        button2.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)
-        button2.backgroundColor = UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1.0)
-        button2.layer.cornerRadius = 40
-
-        button3.setTitle("9", for: .normal)
-        button3.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)
-        button3.backgroundColor = UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1.0)
-        button3.layer.cornerRadius = 40
-
-        button4.setTitle("+", for: .normal)
-        button4.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)
-        button4.backgroundColor = UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1.0)
-        button4.layer.cornerRadius = 40
-
-        
-        
-        
-        
-        // horizontalStackView 속성
-        stackView.axis = .horizontal
-        stackView.backgroundColor = .black
-        stackView.spacing = 10
-        stackView.distribution = .fillEqually
-        
-        [label, stackView]
-            .forEach {view.addSubview($0)}
-        
-        label.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(30)
-            $0.trailing.equalToSuperview().offset(-30)
-            $0.top.equalToSuperview().offset(200)
-            $0.height.equalTo(100)
-        }
-        stackView.snp.makeConstraints {
+        horizontalStackView2.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
             $0.height.equalTo(80)
+            $0.width.equalTo(350)
+            $0.top.equalTo(horizontalStackView1.snp.bottom).offset(10)
         }
+        horizontalStackView3.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.height.equalTo(80)
+            $0.width.equalTo(350)
+            $0.top.equalTo(horizontalStackView2.snp.bottom).offset(10)
+        }
+        horizontalStackView4.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.height.equalTo(80)
+            $0.width.equalTo(350)
+            $0.top.equalTo(horizontalStackView3.snp.bottom).offset(10)
+        }
+
+
+
     }
+    
     func makeHorizontalStackView(_ views: [UIView]) -> UIStackView {
         let stackView = UIStackView()
         stackView.backgroundColor = .black
@@ -91,7 +84,17 @@ class ViewController: UIViewController {
         views.forEach { stackView.addArrangedSubview($0) }
         return stackView
     }
-//    func makeButton
+    
+    func makeVerticalStackView(_ views: [UIView]) -> UIStackView {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 10
+        stackView.distribution = .fillEqually
+        
+        views.forEach { stackView.addArrangedSubview($0) }
+        return stackView
+        
+    }
     
     
 }
